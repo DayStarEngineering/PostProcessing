@@ -1,0 +1,64 @@
+% Given a directory, either read all files in that directory and plot, or
+% reload the saved    .mat   file with all the data stored.
+
+
+
+function all_data = PlotBatch(file_dir)
+
+
+%% First, look and see if the .mat file exists with this batch directory.
+batchname   = regexp(file_dir,'/','split');
+
+if exist([batchname{end},'.mat'],'file')
+    all_data = load(['batchname','.mat']);
+else
+    addpath(file_dir)
+    
+    %% Gotta Parse Each Raw File
+    for ii = 1:42
+        params{ii} = ['field_',num2str(ii),' '];
+        eval(['all_data.',params{ii},'=[];']);
+    end
+    
+    files = dir([file_dir,'/*.txt']);
+    
+    for ii = 1:length(files)
+        filename = files(ii).name;
+        
+        eval(['[',params{:} , ']= textread(filename,''%f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %s %s %s %s %s %s %s %s'');']);
+        
+        % Convert Hex to Numbers
+        for jj=(length(params)-7):length(params)
+           eval([params{jj},' = hex2dec(',params{jj},');']); 
+        end
+        
+        % Put all data into the big structure
+        for jj=1:length(params)
+            eval(['all_data.',params{jj},'= [all_data.',params{jj},';',params{jj},'];']);
+        end
+    
+     
+    end
+
+        new_filename = ['./ParsedFiles/',[batchname{end},'.mat']];
+%         save(new_filename,[strrep(params(:),' ','')])
+        save(new_filename,'all_data'); 
+        
+end
+
+%% Now Perform All the Plotting 
+tags = fieldnames(all_data);
+
+for ii = 1:length(names)
+    
+
+    
+    
+    
+    
+end
+
+
+
+
+

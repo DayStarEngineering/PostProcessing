@@ -1,0 +1,14 @@
+global startup image_dir
+
+
+%% Local Directories to Add to Path
+addpath('GrayCodeConversion')
+addpath('Images')
+addpath('DarkNoise')
+
+%% Temporaray Image Directory
+% addpath('E:\Rev3Images\6_18_12')   % On backup computer
+addpath('~/Desktop/DayStar_3-18-2012')
+
+
+startup = 1; 
