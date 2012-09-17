@@ -2,6 +2,8 @@
 
 function data = ParseBinary(filename,plotYN)
 
+% Files MUST BE IN RAW FILES DIRECTORY
+
 
 %% First, parse the binary into text
 if exist('TMP/file0.txt','file')
@@ -14,6 +16,12 @@ cd ..
 
 %% Load the Binary File
 tmp = load('file0.txt');
+
+% IF buffer 4, do different stuff
+
+
+
+% Else Do other stuff
 
 %% Make a Structure of the file data
 fields = upper({'time', 'time_us', 'field1' 'field2' 'field3' 'field4' 'field5' 'field6' 'field7' 'field8'});
