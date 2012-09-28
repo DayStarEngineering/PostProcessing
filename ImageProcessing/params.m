@@ -7,7 +7,7 @@ function output = params(input)
 switch upper(strrep(input,'_',' '))
     %% Directory where images are stored
     case 'IMAGE DIR'
-        output = './DayStarPic';
+        output = '~/Desktop/SecondDayTime';
     %% Has the Startup script been run?
     case 'STARTUP'
         if strfind(path,'Utils') & ...
